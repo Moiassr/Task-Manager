@@ -1,19 +1,20 @@
 import React from 'react';
+import { List } from '@mui/material';
 import TaskItem from './TaskItem';
 
-function TaskList({ tasks, toggleTaskCompletion, deleteTask }) {
+const TaskList = ({ tasks, toggleTaskCompletion, deleteTask }) => {
   return (
-    <ul>
+    <List sx={{ padding: 2 }}>
       {tasks.map((task, index) => (
-        <TaskItem 
-          key={index} 
-          task={task} 
-          toggleTaskCompletion={() => toggleTaskCompletion(index)} 
-          deleteTask={() => deleteTask(index)} 
+        <TaskItem
+          key={index}
+          task={task}
+          onToggleComplete={toggleTaskCompletion ? () => toggleTaskCompletion(index) : null}
+          onDelete={() => deleteTask(index)}
         />
       ))}
-    </ul>
+    </List>
   );
-}
+};
 
 export default TaskList;
